@@ -158,8 +158,8 @@ public class LoafDataTypeDetectorTests
     [InlineData("not a loaf", false)]
     [InlineData("SHA256(-)=", false)]
     [InlineData("SHA256(-)=abc123", false)]
-    [InlineData("SHA256(-)=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef 48656c6c6f", true)]
-    [InlineData("  SHA256(-)=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef 48656c6c6f  ", true)]
+    [InlineData("SHA256(-)=fe6a4de332cfce54fa1dd34ba0028fa512a0984d0cbbed837b6869d67911ac8a 1f8b0800000000000203edcec90902411404d07f368a4e40f83d4b770aa6e1c1dbc0804bfe3a630c0ae27b97a2a00e758ccfcb9796b965ed73dd7b6d6dcfb71675cea1d76918fbb66b398d51f20bdfe271bb9fafa5c49f3a5d96653d040000000000000000003fe609dff765e300280000", true)]
+    [InlineData("  SHA256(-)=fe6a4de332cfce54fa1dd34ba0028fa512a0984d0cbbed837b6869d67911ac8a 1f8b0800000000000203edcec90902411404d07f368a4e40f83d4b770aa6e1c1dbc0804bfe3a630c0ae27b97a2a00e758ccfcb9796b965ed73dd7b6d6dcfb71675cea1d76918fbb66b398d51f20bdfe271bb9fafa5c49f3a5d96653d040000000000000000003fe609dff765e300280000  ", true)]
     public async Task TryDetectDataAsync_VariousInputs_ReturnsExpectedResult(string? input, bool expectedSuccess)
     {
         // Arrange
