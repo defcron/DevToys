@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  <data name="ShortDisplayTitle" xml:space="preserve">
+    <value>LoaF Encoder / Decoder</value>
+  </data>
+  <data name="LongDisplayTitle" xml:space="preserve">
+    <value>LoaF (Linear Object Archive Format) Encoder / Decoder</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Create, verify, and extract LoaF archives - a delightfully simple, single-line, self-validating archive format</value>
+  </data>
+  <data name="AccessibleName" xml:space="preserve">
+    <value>LoaF Encoder Decoder</value>
+  </data>
+  
+  <data name="Configuration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="OperationTitle" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="OperationDescription" xml:space="preserve">
+    <value>Choose whether to create, verify, or extract LoaF archives</value>
+  </data>
+  <data name="CreateLoaf" xml:space="preserve">
+    <value>Create LoaF</value>
+  </data>
+  <data name="VerifyLoaf" xml:space="preserve">
+    <value>Verify LoaF</value>
+  </data>
+  <data name="ExtractLoaf" xml:space="preserve">
+    <value>Extract LoaF</value>
+  </data>
+  
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  
+  <data name="InputTextPlaceholder" xml:space="preserve">
+    <value>Enter text content to archive, or paste a LoaF archive to verify/extract...</value>
+  </data>
+  
+  <data name="VerificationSuccess" xml:space="preserve">
+    <value>✅ LoaF archive verified successfully - integrity check passed</value>
+  </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>❌ LoaF archive verification failed - integrity check failed or invalid format</value>
+  </data>
+  
+  <data name="ExtractionSuccess" xml:space="preserve">
+    <value>✅ LoaF archive extracted successfully</value>
+  </data>
+  <data name="ExtractionFailed" xml:space="preserve">
+    <value>❌ LoaF archive extraction failed - invalid format or corrupted data</value>
+  </data>
+  
+  <data name="CreateSuccess" xml:space="preserve">
+    <value>✅ LoaF archive created successfully</value>
+  </data>
+  <data name="CreateFailed" xml:space="preserve">
+    <value>❌ Failed to create LoaF archive</value>
+  </data>
+</root>

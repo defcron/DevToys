@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>NU5104</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <Title>DevToys.Loaf</Title>
+    <Description>LoaF (Linear Object Archive Format) encoder/decoder extension for DevToys - A delightfully simple, single-line, self-validating archive format.</Description>
+    <RepositoryUrl>https://github.com/gptenv/DevToys</RepositoryUrl>
+    <Authors>DevToys Community</Authors>
+
+    <PackageTags>devtoys-app</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DevToys.UnitTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevToys.Api\DevToys.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OneOf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DevToysLoaf.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DevToysLoaf.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Tools\LoafTool\LoafTool.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoafTool.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="DevToysLoaf.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DevToysLoaf.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Tools\LoafTool\LoafTool.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoafTool.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
