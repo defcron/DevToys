@@ -11,7 +11,7 @@ namespace DevToys.Loaf.Helpers;
 
 internal static partial class LoafHelper
 {
-    internal const string LoafHeaderPattern = @"^SHA256\(-\)=([0-9a-f]{64}) (.*)$";
+    internal const string LoafHeaderPattern = @"^SHA256\(-\)=([0-9a-f]+) (.*)$";
     
     [GeneratedRegex(LoafHeaderPattern, RegexOptions.Compiled)]
     private static partial Regex LoafHeaderRegex();
@@ -91,6 +91,13 @@ internal static partial class LoafHelper
 
                 string embeddedHash = match.Groups[1].Value;
                 string hexData = match.Groups[2].Value;
+
+                // Validate hash length (should be exactly 64 hex characters for SHA256)
+                if (embeddedHash.Length != 64)
+                {
+                    logger.LogWarning("Invalid .loaf format: hash length is not 64 characters");
+                    return new ResultInfo<bool>(false, true); // Operation succeeds, but validation fails
+                }
 
                 // Calculate actual hash
                 using var sha256 = SHA256.Create();
@@ -253,8 +260,8 @@ internal static partial class LoafHelper
         while (true)
         {
             // Read tar header
-            int bytesRead = await tarStream.ReadAsync(headerBuffer, cancellationToken);
-            if (bytesRead < 512)
+            int headerBytesRead = await tarStream.ReadAsync(headerBuffer, cancellationToken);
+            if (headerBytesRead < 512)
                 break;
                 
             // Check if this is the end marker (all zeros)
@@ -282,15 +289,18 @@ internal static partial class LoafHelper
             
             // Extract file size
             string sizeStr = Encoding.ASCII.GetString(headerBuffer, 124, 11).TrimEnd('\0', ' ');
-            if (!long.TryParse(sizeStr, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, 
-                CultureInfo.InvariantCulture, out long fileSize))
+            
+            long fileSize;
+            // TAR format uses octal for file sizes
+            try
             {
-                // Try octal
-                try
-                {
-                    fileSize = Convert.ToInt64(sizeStr, 8);
-                }
-                catch
+                fileSize = Convert.ToInt64(sizeStr, 8);
+            }
+            catch
+            {
+                // Fallback to decimal if octal parsing fails
+                if (!long.TryParse(sizeStr, NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite, 
+                    CultureInfo.InvariantCulture, out fileSize))
                 {
                     fileSize = 0;
                 }
@@ -300,7 +310,14 @@ internal static partial class LoafHelper
             byte[] fileData = new byte[fileSize];
             if (fileSize > 0)
             {
-                await tarStream.ReadAsync(fileData.AsMemory(0, (int)fileSize), cancellationToken);
+                int totalBytesRead = 0;
+                while (totalBytesRead < fileSize)
+                {
+                    int bytesRead = await tarStream.ReadAsync(fileData.AsMemory(totalBytesRead, (int)(fileSize - totalBytesRead)), cancellationToken);
+                    if (bytesRead == 0)
+                        break;
+                    totalBytesRead += bytesRead;
+                }
                 
                 // Skip padding to next 512-byte boundary
                 long padding = (512 - (fileSize % 512)) % 512;
