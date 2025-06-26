@@ -164,7 +164,7 @@ internal static partial class LoafHelper
     {
         return input.Match(
             fileInfo => fileInfo.Name,
-            str => "content"
+            str => "-"  // Use "-" for string input to match official LoaF convention
         );
     }
 

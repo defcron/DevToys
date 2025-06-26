@@ -125,7 +125,7 @@ public class LoafHelperTests
         extractResult.Data.Should().HaveCount(1);
         
         var extractedFile = extractResult.Data![0];
-        extractedFile.Name.Should().Be("content");
+        extractedFile.Name.Should().Be("-");
         
         string extractedContent = System.Text.Encoding.UTF8.GetString(extractedFile.Data);
         extractedContent.Should().Be(originalContent);
