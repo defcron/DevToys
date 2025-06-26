@@ -2,6 +2,7 @@ using DevToys.Api;
 using DevToys.Loaf.Helpers;
 using DevToys.Loaf.SmartDetection;
 using Microsoft.Extensions.Logging;
+using OneOf;
 using System.ComponentModel.Composition;
 using System.Text;
 using static DevToys.Api.GUI;

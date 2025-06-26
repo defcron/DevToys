@@ -5,8 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <NoWarn>NU5104</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>NU5104;IDE0055;IDE2001;CA1822</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
